@@ -9,7 +9,7 @@ const ManufacturerContainer = ({manufacturers}) =>{
 
     return(
         <div>
-              <h2 className="title">Manufacturers</h2>
+              
 
 <table className="styled-table">
     <thead className="">

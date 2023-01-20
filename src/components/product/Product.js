@@ -2,9 +2,12 @@ import React from "react";
 
 const Product = ({product}) => {
 
+    
+
 
     return(
 
+        
         
         
         <tr>
@@ -16,6 +19,7 @@ const Product = ({product}) => {
             <td>{product.stockQty}</td>
             <td>{product.buyPrice}</td>
             <td>{product.sellPrice}</td>
+            <td>{product.sellPrice - product.buyPrice} </td>
             
         </tr>
       

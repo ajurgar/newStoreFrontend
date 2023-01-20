@@ -6,6 +6,7 @@ import HomePage from "./HomePage";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "../NavBar";
 import ErrorPage from "./ErrorPage";
+import ProductForm from "../components/product/ProductForm";
 
 const MainContainer = () => {
 
@@ -36,6 +37,8 @@ const MainContainer = () => {
             <Route path="/" element={<HomePage products = {products} manufacturers = {manufacturers} updateCustomersAndBookings = {getManufacturersWithIdAndBookings}/>} />
             <Route path="/products" element={<ProductContainer products = {products} manufacturers = {manufacturers}/>} />
             <Route path="/manufacturers" element={<ManufacturerContainer manufacturers = {manufacturers}/>} />
+            <Route path="/products/new" element={<ProductForm products = {products} manufacturers = {manufacturers}/>} />
+            <Route path="/manufacturers/new" element={<ProductForm products = {products} manufacturers = {manufacturers}/>} />
             <Route path="*" element={<ErrorPage/>} />
         </Routes>
       
