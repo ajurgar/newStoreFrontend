@@ -2,53 +2,43 @@ import React, { useEffect, useState } from "react";
 import ProductContainer from "./ProductContainer";
 import ManufacturerContainer from "./ManufacturerContainer";
 import Request from "../helpers/request";
+import HomePage from "./HomePage";
+import { Routes, Route } from "react-router-dom";
+import NavBar from "../NavBar";
+import ErrorPage from "./ErrorPage";
 
 const MainContainer = () => {
 
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        getProductsWithIdAndManufacturers();
+        getManufacturersWithIdAndBookings();
     }, [])
 
     const [manufacturers, setManufacturers] = useState([]);
 
-    const getProductsWithIdAndManufacturers = () =>{
+    const getManufacturersWithIdAndBookings = () =>{
         const request = new Request();
         request.get('http://localhost:8080/api/products')
-        .then (data => {
-            console.log(data)
-            setProducts(data)});
-        
-
-        // request.get('api/manufacturers')
-        // .then(fetchedManufacturers => {
-        //     const arrayOfManufacturerProductCountsPromises = fetchedManufacturers.map(manufacturer => {
-        //         return getProductCountById(manufacturer.id);
-        //     });
-
-        //     Promise.all(arrayOfManufacturerProductCountsPromises)
-        //     .then(fulfilledPromides => {
-
-        //         const updatedManufacturers = fetchedManufacturers.map((manufacturer, index) => {
-        //             manufacturer.productCount = fulfilledPromides[index];
-        //             return manufacturer;
-        //         })
-        //         updatedManufacturers.sort((a, b) => b.productCount - a.productCount);
-        //         setManufacturers(updatedManufacturers);
-        //     }); 
-        // });
+        .then (data => setProducts(data));
+   
+        request.get('http://localhost:8080/api/manufacturers')
+        .then (data => setManufacturers(data));
     }
 
-    // const getProductCountById = (id) => {
-    //     return fetch('api/products/' + id + '/productcount'
-    //             .then(response => response.json()));
-    // }
+
 
     return (
         <div>
-        <ProductContainer products = {products}/>
-        <ManufacturerContainer manufacturers = {manufacturers}/>
+        <NavBar />
+        <Routes>
+            <Route path="/home" element={<HomePage products = {products} manufacturers = {manufacturers} updateCustomersAndBookings = {getManufacturersWithIdAndBookings}/>} />
+            <Route path="/" element={<HomePage products = {products} manufacturers = {manufacturers} updateCustomersAndBookings = {getManufacturersWithIdAndBookings}/>} />
+            <Route path="/products" element={<ProductContainer products = {products} manufacturers = {manufacturers}/>} />
+            <Route path="/manufacturers" element={<ManufacturerContainer manufacturers = {manufacturers}/>} />
+            <Route path="*" element={<ErrorPage/>} />
+        </Routes>
+      
            
         </div>
     )

@@ -1,14 +1,17 @@
 import React from "react";
 
-const Manufacturer = ({manufacturer}) => {
+const Manufacturer = ({ manufacturer }) => {
 
 
-    return(
+    return (
         <>
-            {manufacturer.id}
-            {manufacturer.name}
-            {manufacturer.status}
-            
+            <tr>
+                <td>{manufacturer.id}</td>
+                <td>{manufacturer.name}</td>
+                <td>{manufacturer.status ? "Active" : "Not Active"}</td>
+            </tr>
+
+
         </>
     )
 }
