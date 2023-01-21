@@ -1,31 +1,18 @@
 import React from "react";
-import Manufacturer from "../components/manufacturer/Manufacturer";
+import ManufacturerList from "../components/manufacturer/ManufacturerList";
+import ManufacturerForm from "../components/manufacturer/ManufacturerForm";
+import { Routes, Route } from "react-router-dom";
 
-const ManufacturerContainer = ({manufacturers}) =>{
+const ManufacturerContainer = ({ manufacturers }) => {
 
-    const manufacturersNode = manufacturers.map((manufacturer, index) => {
-            return <Manufacturer manufacturer={manufacturer} key={index} />
-    })
 
-    return(
+    return (
         <div>
-              
+            <Routes>
+                <Route path="/" element={<ManufacturerList manufacturers={manufacturers} />} />
+                <Route path="/new" element={<ManufacturerForm />} />
+            </Routes>
 
-<table className="styled-table">
-    <thead className="">
-        <tr className="table-columns">
-            <th><b>Manufacturer ID</b></th>
-            <th> <b>Name</b> </th>
-            <th> <b>Status</b> </th>
-            
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {manufacturersNode}
-    </tbody>
-</table>
         </div>
     )
 }
