@@ -48,7 +48,7 @@ const ProductForm = ({ products, manufacturers }) => {
 
 
 
-    return (
+    return (!manufacturers) ? null : (
         <>
             <h2>Add Product</h2>
             <form className="form" onSubmit={handleSubmit}>
