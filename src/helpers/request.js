@@ -8,9 +8,18 @@ class Request {
     post(url, payload) {
         return fetch(url, {
             method: "POST",
-            headers: {"Content-type": "application/json" },
+            headers: { "Content-type": "application/json" },
             body: JSON.stringify(payload)
         });
+    }
+
+    delete(url) {
+        return fetch(url, {
+            method: "DELETE",
+            headers: {"Content-type": "application/json",
+            body: null
+         }
+        })
     }
 }
 

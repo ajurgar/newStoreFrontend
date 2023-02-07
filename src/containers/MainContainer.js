@@ -13,12 +13,12 @@ const MainContainer = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        getManufacturersWithIdAndBookings();
+        getManufacturersWithIdAndProducts();
     }, [])
 
     const [manufacturers, setManufacturers] = useState([]);
 
-    const getManufacturersWithIdAndBookings = () =>{
+    const getManufacturersWithIdAndProducts = () =>{
         const request = new Request();
         request.get('/api/products')
         .then (data => setProducts(data));
@@ -28,18 +28,31 @@ const MainContainer = () => {
     }
 
 
+    const deleteProduct = (id) =>{
+        const copyOfProducts = [...products]
+        let indexToDelete;
+        copyOfProducts.forEach((product, index) => {
+            if(product.id == id) {
+                indexToDelete = index
+            }
+        })
+        copyOfProducts.splice(indexToDelete, 1);
+        setProducts(copyOfProducts);
+    }
+
+
 
     return ( !products || !manufacturers) ? null : (
         <div>
         <NavBar />
         <Routes>
-            <Route path="/home" element={<HomePage products = {products} manufacturers = {manufacturers} updateCustomersAndBookings = {getManufacturersWithIdAndBookings}/>} />
-            <Route path="/" element={<HomePage products = {products} manufacturers = {manufacturers} updateCustomersAndBookings = {getManufacturersWithIdAndBookings}/>} />
-            <Route path="/products/*" element={<ProductContainer products = {products} manufacturers = {manufacturers}/>} />
+            <Route path="/home" element={<HomePage products = {products} manufacturers = {manufacturers} />} />
+            <Route path="/" element={<HomePage products = {products} manufacturers = {manufacturers} />} />
+            <Route path="/products/*" element={<ProductContainer products = {products} deleteProduct = {deleteProduct} manufacturers = {manufacturers}/>} />
             <Route path="/manufacturers/*" element={<ManufacturerContainer manufacturers = {manufacturers}/>} />
             <Route path="*" element={<ErrorPage/>} />
         </Routes>
-      
+       
            
         </div>
     )

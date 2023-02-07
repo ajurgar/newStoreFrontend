@@ -1,6 +1,16 @@
 import React from "react";
+import Request from "../../helpers/request";
 
-const Product = ({product}) => {
+const Product = ({product, deleteProduct}) => {
+
+
+    
+
+    const handleDelete = () =>{
+        const request = new Request();
+        request.delete('/api/products', product.id);
+        deleteProduct(product.id);
+    }
 
     
 
@@ -20,6 +30,10 @@ const Product = ({product}) => {
             <td>{product.buyPrice}</td>
             <td>{product.sellPrice}</td>
             <td>{product.sellPrice - product.buyPrice} </td>
+            <td><button onClick={handleDelete}>Delete</button></td>
+            
+            
+            
             
         </tr>
       

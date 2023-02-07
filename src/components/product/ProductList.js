@@ -2,10 +2,10 @@ import React from "react";
 import Product from "./Product";
 
 
-const ProductList = ({products}) =>{
+const ProductList = ({products, deleteProduct}) =>{
 
     const productsNode = products.map((product, index) => {
-            return <Product product={product} key={index} />
+            return <Product product={product} key={index} deleteProduct={deleteProduct} />
     })
 
     return(
