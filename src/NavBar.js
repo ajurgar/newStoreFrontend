@@ -8,6 +8,7 @@ const NavBar = () =>{
         <nav id="main-navbar">
             <h1 className="app-text">Ajsneakrs App</h1>
             <ul className="ul-navbar">
+                
                 <li>
                 <a href="/home" className="nav-text">Home</a>
                 </li>
@@ -23,6 +24,7 @@ const NavBar = () =>{
                 <li>
                 <a href="/manufacturers/new" className="nav-text">New Manufacturer</a>
                 </li>
+
             </ul>
         </nav>
     </>
